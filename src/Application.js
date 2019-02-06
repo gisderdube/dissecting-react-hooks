@@ -16,7 +16,7 @@ function Workspace() {
 
     return (
         <div>
-            <h1 style={{ color }}>Making sense of React Hooks</h1>
+            <h1 style={{ color }}>Dissecting React Hooks</h1>
             <Counter />
             <button onClick={toggleColor}>Toggle color</button>
         </div>
