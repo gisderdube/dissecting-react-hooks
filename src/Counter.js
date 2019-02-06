@@ -1,18 +1,17 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { ColorContext } from './ColorContext'
 
 function Counter() {
     const [count, setCount] = useState(0)
 
-    function scrollListener() {
-        setCount(window.pageYOffset)
-    }
-    useEffect(() => {
-        document.addEventListener('scroll', scrollListener)
+    const { color, toggleColor } = useContext(ColorContext)
 
-        return () => document.removeEventListener('scroll', scrollListener)
-    }, [])
-
-    return <div>Current count is: {count}</div>
+    return (
+        <div style={{ color }}>
+            Current count is: {count} <br />
+            <button onClick={() => setCount(count + 1)}>Increase count</button>
+        </div>
+    )
 }
 
 export default Counter
