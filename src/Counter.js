@@ -1,26 +1,35 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
-function counterReducer(state, action) {
-    if (action.type === 'increaseCount') return { ...state, count: state.count + 1 }
-    if (action.type === 'toggleColor')
-        return { ...state, color: state.color === '#DC0073' ? '#00A1E4' : '#DC0073' }
-    return state
+function useInterval(callback, delay) {
+    const savedCallback = useRef()
+
+    useEffect(() => {
+        savedCallback.current = callback
+    })
+
+    useEffect(() => {
+        function tick() {
+            savedCallback.current()
+        }
+        if (delay !== null) {
+            let id = setInterval(tick, delay)
+            return () => clearInterval(id)
+        }
+    }, [delay])
 }
 
 function Counter() {
-    const [state, dispatch] = useReducer(counterReducer, {
-        count: 0,
-        color: '#DC0073',
-    })
+    const [count, setCount] = useState(0)
 
-    const { color, count } = state
+    useInterval(() => {
+        setCount(count + 1)
+    }, 1000)
 
     return (
         <div>
-            <span style={{ color }}>Current count is: {count}</span>
+            Current count is: {count}
             <br />
-            <button onClick={() => dispatch({ type: 'increaseCount' })}>Increase count</button>
-            <button onClick={() => dispatch({ type: 'toggleColor' })}>Change Color</button>
+            <button onClick={() => setCount(count + 1)}>Increase count</button>
         </div>
     )
 }
