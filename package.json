@@ -1,0 +1,19 @@
+{
+    "name": "making-sense-of-react-hooks",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "parcel src/index.html --open"
+    },
+    "author": "Lukas Gisder-Dubé",
+    "homepage": "https://dube.io",
+    "license": "ISC",
+    "devDependencies": {
+        "parcel-bundler": "^1.11.0"
+    },
+    "dependencies": {
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0"
+    }
+}
